@@ -10,6 +10,7 @@ Análisis de la adicción a los teléfonos inteligentes en los adolescentes.
 ## Objetivo del Proyecto
 
 [Descripción breve del objetivo del proyecto y por qué es importante]
+
 El objetivo del proyecto es desarrollar un modelo de aprendizaje de máquina (Machine Learning) que sea capaz de predecir si un
 adolescente es adicto a su teléfono inteligente o no, dadas variables como horas de sueño, auto percepción del rendimiento académico y
 horas de uso diarias promedio.
@@ -64,6 +65,7 @@ como un bosque de decisión y un modelo basado en redes neuronales.
 ### Excluye:
 
 - [Descripción de lo que no está incluido en el proyecto]
+
 En el proyecto no se incluye la etapa de visualización de datos ni análisis de correlaciones, ya que el objetivo es producir y evaluar el modelo.
 No se explorarán soluciones basadas en otras arquitecturas además de una red neuronal simple y un modelo de ML clásico. Es decir, no se
 explorarán modelos pre entrenados, transformers, ni redes neuronales convolucionales ni recurrentes.
@@ -108,4 +110,3 @@ Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse d
 ## Referencias
 [^fn1]: Avances en Psicología Latinoamericana. (2016). Avances En Psicología Latinoamericana. https://doi.org/10.12804/apl
 [^fn2]: Kumar, A. R. (2023). Smartphone Addiction: A Growing Concern Among the Student Community. Educational Administration: Theory and Practice, 29(1). https://doi.org/10.53555/kuey.v29i1.9910
-[@freitas2022]
