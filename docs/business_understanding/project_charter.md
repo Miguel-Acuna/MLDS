@@ -1,6 +1,3 @@
----
-bibliography: references.bib
----
 # Project Charter - Entendimiento del Negocio
 
 ## Nombre del Proyecto
@@ -8,8 +5,6 @@ bibliography: references.bib
 Análisis de la adicción a los teléfonos inteligentes en estudiantes.
 
 ## Objetivo del Proyecto
-
-[Descripción breve del objetivo del proyecto y por qué es importante]
 
 El objetivo del proyecto es desarrollar un modelo de aprendizaje de máquina (Machine Learning) que sea capaz de predecir si un
 estudiante es adicto a su teléfono inteligente o no, dadas variables como horas de sueño, auto percepción del rendimiento académico y
@@ -29,9 +24,6 @@ será una herramienta muy útil en el cuidado de una población que, de por sí,
 
 ### Incluye:
 
-- [Descripción de los datos disponibles]
-- [Descripción de los resultados esperados]
-- [Criterios de éxito del proyecto]
 
 Los datos que se usarán provienen de la plataforma Kaggle, el dataset *Students' social media Adiction*. Es un conjunto de datos bien documentado,
 cuya fuente fue una encuesta de auto-percepción publicada en redes sociales. Esto aseguró que la muestra fuera diversa en niveles de 
@@ -64,15 +56,12 @@ como un bosque de decisión y un modelo basado en redes neuronales.
 
 ### Excluye:
 
-- [Descripción de lo que no está incluido en el proyecto]
-
 En el proyecto no se incluye la etapa de visualización de datos ni análisis de correlaciones, ya que el objetivo es producir y evaluar el modelo.
 No se explorarán soluciones basadas en otras arquitecturas además de una red neuronal simple y un modelo de ML clásico. Es decir, no se
 explorarán modelos pre entrenados, transformers, ni redes neuronales convolucionales ni recurrentes.
 
 ## Metodología
 
-[Descripción breve de la metodología que se utilizará para llevar a cabo el proyecto]
 Se utilizará una metodología CRISP-DM. Es decir, se seguirán recurrentemente las etapas de entendimiento del negocio, entendimiento de los
 datos, preparación de los datos, modelado, evaluación y despliegue. Este directorio corresponde a la primera etapa, entendimiento del negocio,
 y será revisitada y actualizada en futuras fases del proyecto.
@@ -90,15 +79,12 @@ y será revisitada y actualizada en futuras fases del proyecto.
 
 ## Equipo del Proyecto
 
-- [Nombre y cargo del líder del proyecto]
-- [Nombre y cargo de los miembros del equipo]
 - Uber Florez Quiroga: Líder del proyecto
 - Johan Sneider Albarracín: Director de desarrollo
 - Miguel Angel Acuña: Director de operaciones
 
 ## Presupuesto
 
-[Descripción del presupuesto asignado al proyecto]
 Se planea un presupuesto de 100.000 pesos colombianos, destinados a la posible compra de Colab Pro.
 
 ## Stakeholders
@@ -109,9 +95,6 @@ Se planea un presupuesto de 100.000 pesos colombianos, destinados a la posible c
 
 ## Aprobaciones
 
-- [Nombre y cargo del aprobador del proyecto]
-- [Firma del aprobador]
-- [Fecha de aprobación]
 
 
 Uber Florez Quiroga, Director de Proyecto
