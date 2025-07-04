@@ -5,25 +5,25 @@ bibliography: references.bib
 
 ## Nombre del Proyecto
 
-Análisis de la adicción a los teléfonos inteligentes en los adolescentes.
+Análisis de la adicción a los teléfonos inteligentes en estudiantes.
 
 ## Objetivo del Proyecto
 
 [Descripción breve del objetivo del proyecto y por qué es importante]
 
 El objetivo del proyecto es desarrollar un modelo de aprendizaje de máquina (Machine Learning) que sea capaz de predecir si un
-adolescente es adicto a su teléfono inteligente o no, dadas variables como horas de sueño, auto percepción del rendimiento académico y
+estudiante es adicto a su teléfono inteligente o no, dadas variables como horas de sueño, auto percepción del rendimiento académico y
 horas de uso diarias promedio.
 
 El uso compulsivo de los teléfonos inteligente no está lejos de ninguna de las personas en el mundo moderno. En particular, como lo 
 señalan Freitas et al.[^fn1], el número de estudios del uso de teléfonos inteligentes en adolescentes creció en aproximadamente 32\% 
 por año entre 2009 y 2019, lo que demuestra el creciente interés en esta población. Sin embargo, Kumar [^fn2] recuerda que no es un panorama tan sencillo, ya que el teléfono inteligente
-es realmente una herramienta de productividad, rendición de cuentas y presencia social en los adolescente. La situación, dice el mismo,
-se complica al involucrar la salud mental de los adolescentes.
+es realmente una herramienta de productividad en los estudiantes, rendición de cuentas y presencia social. La situación, dice el mismo,
+se complica al involucrar la salud mental de los usuarios.
 
 En conclusión, estudios cuantitativos del asunto son necesarios y pertinentes. Un modelo que sea capaz de predecir y alertar con anticipación
-si un adolescente está en riesgo de sufrir adicción y, por lo tanto, de empeorar su salud mental y perjudicar sus rendimiento académico,
-será una herramienta muy útil en el cuidado y desarrollo de los niños.
+si un estudiante está en riesgo de sufrir adicción y, por lo tanto, de empeorar su salud mental y perjudicar sus rendimiento académico,
+será una herramienta muy útil en el cuidado de una población que, de por sí, ya es vulnerable.
 
 ## Alcance del Proyecto
 
@@ -73,27 +73,33 @@ explorarán modelos pre entrenados, transformers, ni redes neuronales convolucio
 ## Metodología
 
 [Descripción breve de la metodología que se utilizará para llevar a cabo el proyecto]
+Se utilizará una metodología CRISP-DM. Es decir, se seguirán recurrentemente las etapas de entendimiento del negocio, entendimiento de los
+datos, preparación de los datos, modelado, evaluación y despliegue. Este directorio corresponde a la primera etapa, entendimiento del negocio,
+y será revisitada y actualizada en futuras fases del proyecto.
+
 
 ## Cronograma
 
 | Etapa | Duración Estimada | Fechas |
 |------|---------|-------|
-| Entendimiento del negocio y carga de datos | 2 semanas | del 1 de mayo al 15 de mayo |
-| Preprocesamiento, análisis exploratorio | 4 semanas | del 16 de mayo al 15 de junio |
-| Modelamiento y extracción de características | 4 semanas | del 16 de junio al 15 de julio |
-| Despliegue | 2 semanas | del 16 de julio al 31 de julio |
-| Evaluación y entrega final | 3 semanas | del 1 de agosto al 21 de agosto |
+| Entendimiento del negocio y carga de datos | 1 semana | del 26 de junio al 3 de julio|
+| Análisis exploratorio, preprocesamiento y transformación | 1 semana | del 3 de julio al 10 de julio |
+| Construcción y experimentación con modelos y evaluación | 1 semana | del 7 de julio al 17 de julio |
+| Despliegue y entrega final | 2 semanas | del 10 de julio al 25 de julio |
 
-Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse de acuerdo al proyecto.
 
 ## Equipo del Proyecto
 
 - [Nombre y cargo del líder del proyecto]
 - [Nombre y cargo de los miembros del equipo]
+- Uber Florez Quiroga: Líder del proyecto
+- Johan Sneider Albarracín: Director de desarrollo
+- Miguel Angel Acuña: Director de operaciones
 
 ## Presupuesto
 
 [Descripción del presupuesto asignado al proyecto]
+Se planea un presupuesto de 100.000 pesos colombianos, destinados a la posible compra de Colab Pro.
 
 ## Stakeholders
 
@@ -106,6 +112,10 @@ Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse d
 - [Nombre y cargo del aprobador del proyecto]
 - [Firma del aprobador]
 - [Fecha de aprobación]
+
+
+Uber Florez Quiroga, Director de Proyecto
+3 de julio de 2025
 
 ## Referencias
 [^fn1]: Avances en Psicología Latinoamericana. (2016). Avances En Psicología Latinoamericana. https://doi.org/10.12804/apl
