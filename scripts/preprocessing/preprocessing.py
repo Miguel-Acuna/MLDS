@@ -71,24 +71,3 @@ scaler = StandardScaler()
 df_final[num_cols] = scaler.fit_transform(df_final[num_cols])
 
 df_final.head()
-
-X = df_final.drop(columns=['Affects_Academic_Performance'])
-y = df_final['Affects_Academic_Performance']
-
-X_train, X_temp, y_train, y_temp = train_test_split(
-    X, y,
-    test_size=0.30,
-    random_state=42,
-    stratify=y
-)
-
-X_val, X_test, y_val, y_test = train_test_split(
-    X_temp, y_temp,
-    test_size=0.50,
-    random_state=42,
-    stratify=y_temp
-)
-
-print(f"Train: {X_train.shape[0]} muestras")
-print(f"Val:   {X_val.shape[0]} muestras")
-print(f"Test:  {X_test.shape[0]} muestras")
