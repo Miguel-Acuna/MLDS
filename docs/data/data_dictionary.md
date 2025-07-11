@@ -2,6 +2,8 @@
 
 ## Base de datos 1
 
+**Agregar una descripción de la tabla o fuente de datos.
+
 |Variable 			| Type		|Description				|
 |--------- 			|-----------	|------------				|
 |Student_ID			|Integer  	|Unique respondent identifier		|
@@ -18,5 +20,5 @@
 |Conflicts_Over_Social_Media 	|Integer 	|Number of relationship conflicts due to social media|
 |Addicted_Score 		|Integer 	|Social Media Addiction Score (1 = low to 10 = high)|
 
-La variable objetivo será *Addicted_Score*. Es decir, este se puede ver como un problema multiclase con 10 clases.
+
 
