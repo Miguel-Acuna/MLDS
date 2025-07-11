@@ -45,7 +45,7 @@ Los datos se encontraban almacenados en un archivo csv y el destino es un datafr
 - [ ] Especificar la estructura de los archivos de origen de los datos.
 - [ ] Describir los procedimientos de transformación y limpieza de los datos.
 
-Se verificó que no hay datos faltantes, duplicados ni con diferentes formatos en el dataset. También que las variables numéricas están, en su mayoría, distribuidas normalmente, exceptuando la variable addicted_score que está sesgada a la derecha. Por otro lado, las variables categóricas sí están desequilibradas. La variable de ubicación presenta un sesgo hacia los países de norteamérica, comparado con el resto del mundo. En contraste, África escasamente presenta algunos registros. Las demás variables presentan fuertes sesgos hacia la educación superior, plataformas como tik tok, instagram y facebook y personas solteras. 
+Se verificó que no hay datos faltantes, duplicados ni con diferentes formatos en el dataset. También que las variables numéricas están, en su mayoría, distribuidas normalmente, exceptuando la variable addicted_score que está sesgada a la derecha. Por otro lado, las variables categóricas sí están desequilibradas. La variable de ubicación presenta un sesgo hacia los países de norteamérica, comparado con el resto del mundo. En contraste, África escasamente presenta algunos registros. Las demás variables presentan fuertes sesgos hacia la educación superior, plataformas como tik tok, instagram y facebook y personas solteras. Se considerará dejar únicamente esas categorías, ya que el grueso de los datos recae allí.
 
 Se puede considerar hacer un balanceo de los datos y también, para variables como el nivel educativo, la eliminación por completo de la categoría 'high school'.
 
@@ -54,3 +54,5 @@ Se puede considerar hacer un balanceo de los datos y también, para variables co
 - [ ] Especificar la base de datos de destino para los datos.
 - [ ] Especificar la estructura de la base de datos de destino.
 - [ ] Describir los procedimientos de carga y transformación de los datos en la base de datos de destino.
+
+La transformación de los datos consistió en eliminar valores duplicados, reescalar las variables numéricas y codificar las variables categóricas. La carga se hace simplemente con el método to_csv de pandas. La estructura, por lo tanto, es un archivo plano, tabular y separado por comas.
