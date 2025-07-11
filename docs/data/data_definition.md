@@ -2,15 +2,16 @@
 
 ## Origen de los datos
 
-- [ ] Especificar la fuente de los datos y la forma en que se obtuvieron. 
+-Los datos se obtuvieron de la plataforma de Kaggle
+
 
 ## Especificación de los scripts para la carga de datos
 
-- [ ] Especificar los scripts utilizados para la carga de los datos. 
+Para la carga de la informacion en un dataframe de pandas se encuentra en la carpeta business understanding 
 
 ## Referencias a rutas o bases de datos origen y destino
 
-- [ ] Especificar las rutas o bases de datos de origen y destino para los datos.
+URL : https://github.com/Kaggle/kagglehub/blob/main/README.md#kaggledatasetadapterpandas
 
 ### Rutas de origen de datos
 
