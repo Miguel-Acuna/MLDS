@@ -12,9 +12,9 @@ Este informe describe los resultados del proyecto de machine learning y presenta
 
 ## Lecciones aprendidas
 
-- Identificación de los principales desafíos y obstáculos encontrados durante el proyecto.
-- Lecciones aprendidas en relación al manejo de los datos, el modelamiento y la implementación del modelo.
-- Recomendaciones para futuros proyectos de machine learning.
+La transformacion de columnas categoricas tiene que revisarse muy bien ya que existe varias formas de lograrlo 
+El despliegue es una etapa muy importante en el desarrollo del ciclo de desarrollo de software , mas en esta area de Machine Learning
+El usuario final no esta acostumbrado a manejar estas herramientas, por lo tanto, un buen front puede alivianar el proceso de cambio tecnologico en el que estan todas las empresas actualmente 
 
 ## Impacto del proyecto
 
@@ -23,10 +23,12 @@ Este informe describe los resultados del proyecto de machine learning y presenta
 
 ## Conclusiones
 
-- Resumen de los resultados y principales logros del proyecto.
-- Conclusiones finales y recomendaciones para futuros proyectos.
+Al contar con pocos datos, se debe explorar la valides de este score a nivel mundial, ya que la mayoria de los participantes provienen de partes especificas. Ademas, la adicion de nuevas variables puede hacer mas robusto la deteccion de 
+esta addicion. Un algorirtmo de arboles de decision mostro mejores resultados que una red neuronal, lo cual se adecua mas para el tipo de problema que estamos solucionando aqui.
+La forma de despliegue es algo nuevo para todos los integrantes el equipo, lo cual nos ha costado consolidar una solucion usable para las empresas del hoy, esta es la version del API
 
 ## Agradecimientos
 
-- Agradecimientos al equipo de trabajo y a los colaboradores que hicieron posible este proyecto.
-- Agradecimientos especiales a los patrocinadores y financiadores del proyecto.
+Miguel Angel Acuna Silva maacunas@unal.edu.co
+Johan Sneider Albarracin Gomez joalbarracing@unal.edu.co
+Uber Florez Quiroga uflorezq@unal.edu.co
