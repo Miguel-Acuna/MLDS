@@ -660,18 +660,62 @@ zipp                                  3.23.0
 zstandard                             0.23.0
 
 
-- **Requisitos de seguridad:** (lista de requisitos de seguridad necesarios para el despliegue, como autenticación, encriptación de datos, etc.)
+- **Requisitos de seguridad:** 
+Para la primera version del despliegue, al ser por medio de CLI, la seguridad solo se manejara por medio del nombre de la libreria a usar. Cuando estemos usando el despliegue por medio de un API, la seguridad sera tenida en cuenta por el contenedor del modelo, al contar con un puerto espefico y una direccion IP para el consumo.
+
 - **Diagrama de arquitectura:** (imagen que muestra la arquitectura del sistema que se utilizará para desplegar el modelo)
+
+┌─────────────────────┐
+│    Desarrollador    │
+│                     │
+└────────┬────────────┘
+         │
+         ▼
+┌────────────────────────┐
+│ 1. Desarrollo de       │
+│    la librería         │
+│  (funciones, clases,   │
+│   módulos, setup.py)   │
+└────────┬───────────────┘
+         │
+         ▼
+┌────────────────────────┐
+│ 2. Publicación en      │
+│    repositorio         │
+│  (Ej: PyPI, GitHub)    │
+└────────┬───────────────┘
+         │
+         ▼
+┌────────────────────────────┐
+│ 3. Usuario final (cliente) │
+│    quiere usar tu cod      │
+└────────┬───────────────────┘
+         │
+         ▼
+┌────────────────────────┐
+│ 4. Descarga de         │
+│    la librería         │
+└────────┬───────────────┘
+         │
+         ▼
+┌────────────────────────┐
+│ 6. Uso de las funciones│
+│    y clases            │
+│                        │
+└────────────────────────┘
+
 
 ## Código de despliegue
 
-- **Archivo principal:** (nombre del archivo principal que contiene el código de despliegue)
-- **Rutas de acceso a los archivos:** (lista de rutas de acceso a los archivos necesarios para el despliegue)
-- **Variables de entorno:** (lista de variables de entorno necesarias para el despliegue)
+- **Archivo principal:** mlcli.py
+- **Rutas de acceso a los archivos:** scripts/Deployment
+- **Variables de entorno:** No aplica
 
 ## Documentación del despliegue
 
-- **Instrucciones de instalación:** (instrucciones detalladas para instalar el modelo en la plataforma de despliegue)
-- **Instrucciones de configuración:** (instrucciones detalladas para configurar el modelo en la plataforma de despliegue)
-- **Instrucciones de uso:** (instrucciones detalladas para utilizar el modelo en la plataforma de despliegue)
-- **Instrucciones de mantenimiento:** (instrucciones detalladas para mantener el modelo en la plataforma de despliegue)
+- **Instrucciones de instalación:** contar con una version de python que pueda correr el paquete necesario
+- **Instrucciones de configuración:**  tener en cuenta el siguiente comando >> !python ./src/mlcli.py -p ./test.csv <<, cambiar con el nombre del archivo CSV para que este pueda ser procesado
+- **Instrucciones de uso:**  El usuario tendra que usar un csv con la informaicion que quiere predecir teniendo en cuenta el formato adecuado y el separador
+en esta version, el usuario tendra que ingresar la informacion con las transformacion hechas para que el modelo pueda funcionar sin ningun probrema, para futuras versiones se manejaran las entradas previstas inicialmente
+al contar con el paquete, este se podra ejecutar teniendo en cuenta las dependencias y ubicacion del mismo
+- **Instrucciones de mantenimiento:** a medida que se lanzen nuevas versiones, el codigo se mantendra al corriente a los cambios que presenten los datos de entrada
