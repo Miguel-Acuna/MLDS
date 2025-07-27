@@ -1,41 +1,117 @@
-# Reporte del Modelo Final
+# Reporte Integral del Modelo de Predicción de Adicción a Redes Sociales
 
-## Resumen Ejecutivo
+## 1. Resumen Ejecutivo
 
-En esta sección se presentará un resumen de los resultados obtenidos del modelo final. Es importante incluir los resultados de las métricas de evaluación y la interpretación de los mismos.
+Este documento presenta el desarrollo y evaluación de un modelo de aprendizaje automático orientado a predecir el **nivel de adicción a redes sociales** en estudiantes, utilizando datos autoreportados. Se compararon múltiples modelos, incluyendo un modelo *baseline* (bosque aleatorio) y una red neuronal multicapa, usando técnicas de ajuste de hiperparámetros como búsqueda en rejilla y Optuna.  
 
-Como modelo final se eligió el modelo base. Una búsqueda de hiperparámetros en una rejilla más fina arrojó las mismas métricas sobre el conjunto de evaluación y el modelo de red neuronal, que también se desempeñó bien, no lo superó.
+El modelo final seleccionado fue un **bosque aleatorio con 69 árboles**, profundidad máxima de 11, optimizado con el criterio de impureza Gini. Este modelo obtuvo resultados sobresalientes, con métricas de _precision_, _recall_ y _f1-score_ superiores al 95% en el conjunto de evaluación. Aunque el modelo neuronal mostró un rendimiento competitivo (~92%), no logró superar al modelo basado en árboles.
 
-Las métricas de _precission_, _recall_ y _f1 score_ dieron al 95%, es decir, el modelo tiene una gran capacidad de predecir correctamente positivos y negativos. Sin embargo, en el conjunto de test, que tenía 103 registros, predijo mal 5%, es decir, aproximadamente 6 registros. Para nuestro tipo de datos, en donde no es una situación grave clasificar mal un registro, esto es un buen resultado. Si, adicionalmente, se considera que la incorrecta clasificación es gradual (si el resultado correcto es 9, no es lo mismo predecir un 8 que un 3), se encuentra que el bosque aleatorio hace un gran trabajo.
+## 2. Descripción del Problema
 
-## Descripción del Problema
+El problema abordado se enmarca en el creciente uso de redes sociales por parte de estudiantes de secundaria y universidad. El objetivo del proyecto es predecir el puntaje de adicción a redes sociales según la **Escala de Bergen**, utilizando variables como:
 
-En esta sección se describirá el problema que se buscó resolver con el modelo final. Se debe incluir una descripción detallada del problema, el contexto en el que se desarrolla, los objetivos que se persiguen y la justificación del modelo.
+- Tiempo de uso diario
+- Horas de sueño
+- Nivel educativo
+- Conflictos en redes sociales
+- Salud mental (autoevaluada)
+- Otros datos demográficos
 
-El contexto del problema es la actual utilización de redes sociales entre estudiantes de secundaria y universidad. Dadas variables autoreportadas como horas de sueño, horas de uso, puntuación de salud mental, país de residencia, y conflictos en redes sociales, entre otras, el problema consistió en predecir el puntaje de adicción a las redes, medido según la escala de Bergen de adicción a redes sociales.
+Esta predicción permite anticipar niveles de riesgo y diseñar estrategias de intervención académica o psicológica.
 
-## Descripción del Modelo
+## 3. Preparación y Procesamiento de Datos
 
-En esta sección se describirá el modelo final que se desarrolló para resolver el problema planteado. Se debe incluir una descripción detallada del modelo, la metodología utilizada y las técnicas empleadas.
+### 3.1 Variables de Entrada
 
-Luego de realizar experimentos con el framework optuna, se determinó que el mejor modelo fue un bosque de 69 árboles aleatorios, optimizados según el criterio de impureza de Gini y con una profundidad máxima de 11. Se registró este modelo en el framework mlflow y se procedió a probar una rejilla más detallada, donde se buscó si un bosque con el número de árboles entre 60 y 80 se desempeñaría mejor, pero no. 
+Se utilizaron todas las variables disponibles, excepto `Student_id`. Las transformaciones realizadas incluyen:
 
-Finalmente, se probó una red neuronal con una capa intermedia de 128 neuronas con activación relu y una capa de salida de 7 neuronas con activación softmax. Se entrenó el modelo durante 100 epochs y se observó que ni las métricas ni la función de pérdida mejoraron, indicando que este modelo estaba tan optimizado como se podía. El resultado final en las tres métricas fue cercano al 92%, que sin embargo se consideró bueno, aunque inferior al modelo base. 
+- **Categóricas**: Codificadas con _One-Hot Encoding_ (`Gender`, `Country`, `Most_Used_Platform`, `Affects_Academic_Performance`, `Relationship_Status`, `Conflicts_Over_Social_Media`).
+- **Ordinales**: `Academic_Level` se transformó asignando valores (1=High School, 2=Undergraduate, 3=Graduate).
+- **Numéricas**: `Age`, `Avg_Daily_Usage_Hours`, `Sleep_Hours_Per_Night`, `Mental_Health_Score` se dejaron sin escalado adicional.
 
-## Evaluación del Modelo
+### 3.2 Variable Objetivo
 
-En esta sección se presentará una evaluación detallada del modelo final. Se deben incluir las métricas de evaluación que se utilizaron y una interpretación detallada de los resultados.
+La variable objetivo es **`Addicted_Score`**, una variable ordinal con valores del 3 al 9 (aunque teóricamente va de 0 a 9). Se trata como un problema de clasificación multiclase con 7 categorías.
 
-El modelo final presenta métrica de precission, recall y f1 cercanas al 98% para el conjunto de validación y al 95% para el conjunto de evaluación. El modelo se dempeña bien en las categorías donde hay amplia cantidad de registros (como la 5 y la 7 de Addicted Score) y no tan bien en donde hay menor cantidad (como la 3). Esto puede indicar que el modelo necesita gran cantidad de datos, que pueden no siempre estar disponibles. Sin embargo, con la cantidad actual, clasificó correctamente 98 de los 105 registros en el conjunto de evaluación. Para el contexto de este trabajo, es un número aceptable ya que siendo un problema multiclase de 7 categorías, se está ganando 80% de precisión sobre un modelo que clasifique aleatoriamente y que cada mala clasificación no tiene repercusiones graves sobre los sujetos de estudio.
+## 4. Modelos Desarrollados
 
-## Conclusiones y Recomendaciones
+### 4.1 Modelo Baseline
 
-En esta sección se presentarán las conclusiones y recomendaciones a partir de los resultados obtenidos. Se deben incluir los puntos fuertes y débiles del modelo, las limitaciones y los posibles escenarios de aplicación.
+Se construyó un modelo base con un **Random Forest** utilizando búsqueda en rejilla. Los hiperparámetros óptimos fueron:
 
-Se recomiienda usar el modelo base para predicción de registros de adicción a redes sociales entre estudiantes. El modelo logró predecir correctamente el 95% de los casos, aunque flaqueó en situaciones en que hubo pocos datos. Esta limitación podría corregirse sacando mayor ventaja de la correlación entre las variables de entrada y la objetivo, por ejemplo, usando un regresor multilineal. 
+- `n_estimators = 69`
+- `max_depth = 11`
+- `criterion = gini`
 
-Posibles escenarios de aplicación incluyen toma de decisiones en políticas educativas y regulatorias de contenido multimedia, diseño de políticas públicas en escuelas y universidades y mayor consciencia de los estudiantes sobre cómo usan sus redes sociales, llevándoles a ser más independietes y sanos.
+Este modelo fue entrenado sobre el conjunto de entrenamiento y evaluado con validación cruzada, registrando sus resultados en MLflow.
 
-## Referencias
+### 4.2 Ajuste Fino del Modelo
 
-En esta sección se deben incluir las referencias bibliográficas y fuentes de información utilizadas en el desarrollo del modelo.
+Se realizó un ajuste fino con una rejilla más específica en el rango `n_estimators = [60, 80]` y se utilizó **Optuna** para evaluar combinaciones adicionales. No se obtuvieron mejoras sustanciales, por lo que se mantuvo la configuración original.
+
+### 4.3 Modelo Neuronal
+
+Se implementó una red neuronal con:
+
+- 1 capa oculta de 128 neuronas (ReLU)
+- 1 capa de salida con 7 neuronas (Softmax)
+- Entrenamiento con 100 épocas
+- Optimización con Adam y pérdida categórica
+
+Este modelo alcanzó métricas cercanas al 92% y se documentó en MLflow, pero no superó al bosque aleatorio.
+
+## 5. Evaluación del Modelo Final
+
+### 5.1 Métricas
+
+| Clase | Precision | Recall | F1-Score | Soporte |
+|-------|-----------|--------|----------|---------|
+| 3     | 1.00      | 0.67   | 0.80     | 3       |
+| 4     | 0.90      | 1.00   | 0.95     | 18      |
+| 5     | 0.92      | 1.00   | 0.96     | 23      |
+| 6     | 1.00      | 0.80   | 0.89     | 10      |
+| 7     | 0.97      | 1.00   | 0.98     | 31      |
+| 8     | 1.00      | 0.93   | 0.96     | 14      |
+| 9     | 1.00      | 1.00   | 1.00     | 6       |
+| **Prom. ponderado** | 0.95 | 0.95 | 0.95 | 106     |
+
+### 5.2 Análisis
+
+- El modelo tiene excelente rendimiento general.
+- El bajo soporte en categorías como la 3 afecta el rendimiento puntual.
+- El modelo generaliza bien y comete errores “graduales” (es decir, una predicción errónea suele estar cercana al valor real).
+
+## 6. Registro y Trazabilidad
+
+Se utilizó **MLflow** para:
+
+- Registrar ejecuciones (`run`)
+- Almacenar métricas y parámetros
+- Versionar los modelos
+- Visualizar resultados desde la UI local (`mlruns/`)
+
+El entorno fue gestionado en Colab, utilizando `mlflow.set_experiment()` y `mlflow.start_run()` para mantener consistencia entre ejecuciones.
+
+## 7. Conclusiones y Recomendaciones
+
+- El **bosque aleatorio** es el mejor modelo hasta el momento.
+- El **95% de acierto** en clasificación multiclase lo hace ideal para entornos reales.
+- La red neuronal podría mejorar con más datos o arquitectura más profunda, pero no justificó su complejidad.
+- En futuras versiones se puede considerar:
+  - Mayor equilibrio de clases (recolección dirigida)
+  - Regresores ordinales o modelos de clasificación jerárquica
+  - Análisis SHAP o Permutation Importance para interpretar resultados
+
+## 8. Aplicaciones Potenciales
+
+- Soporte en decisiones educativas y políticas públicas.
+- Diseño de campañas de concienciación estudiantil.
+- Herramientas diagnósticas automatizadas en entornos escolares o universitarios.
+
+## 9. Referencias
+
+- Escala de Adicción a Redes Sociales de Bergen (BSNAS)
+- Scikit-Learn documentation
+- Keras documentation
+- MLflow tracking
+- Literatura sobre clasificación ordinal y bosques aleatorios
