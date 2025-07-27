@@ -1,65 +1,106 @@
 # Reporte del Modelo Baseline
 
-Este documento contiene los resultados del modelo baseline.
+Este documento contiene los resultados del modelo baseline desarrollado para predecir el nivel de adicción a redes sociales en estudiantes.
 
-## Descripción del modelo
+---
 
-El modelo baseline es el primer modelo construido y se utiliza para establecer una línea base para el rendimiento de los modelos posteriores.
+## 1. Descripción del modelo
 
-Como modelo base se eligió un bosque aleatorio. Inicialmente se hizo una búsqueda en rejilla y se encontró que un bosque con 69 árboles, una profundidad máxima de 11 capas y una función de pérdida de impureza gini daba los mejores resultados.
+El modelo baseline es el primer modelo construido y se utiliza para establecer una línea base del rendimiento, sobre la cual se compararán modelos posteriores.
 
-## Variables de entrada
+Se seleccionó un **modelo de Bosque Aleatorio (Random Forest Classifier)**, entrenado para una tarea de **clasificación multiclase**. Se realizó una búsqueda en rejilla (Grid Search) y se encontró que un bosque con los siguientes hiperparámetros ofrecía el mejor desempeño:
 
-Lista de las variables de entrada utilizadas en el modelo.
+- **Número de árboles**: 69  
+- **Profundidad máxima**: 11  
+- **Criterio de impureza**: Gini  
 
-Se utilizaron todas las variables, excepto 'Student_id'. Las variables categóricas se codificaron con la técnica One Hot, incluyendo la variable 'Country'. La variable 'Academic_Level' se convirtió a ordinal, asignando el valor 1 a High School, 2 a Undergraduate y 3 a Graduate. A las variables numéricas no se les hizo preprocesamiento. La lista de variables usadas es:
-_Age_, _Gender_, _Academic_Level_, _Country_, _Avg_Daily_Usage_Hours_, _Most_Used_Platform_, _Affects_Academic_Performance_, _Sleep_Hours_Per_Night_, _Mental_Health_Score_, _Relationship_Status_ y _Conflicts_Over_Social_Media_.
+---
 
-## Variable objetivo
+## 2. Variables de entrada
 
-Nombre de la variable objetivo utilizada en el modelo.
+Se utilizaron todas las variables disponibles, **excepto** `Student_ID`. El preprocesamiento incluyó:
 
-La varible objetivo utilizada fue 'Addicted_Score', ordinal. En principio 10 valores son posibles, valores enteros del 0 al 9. Sin embargo, los datos reales mostraron que solo asumió valores enteros entre el 3 y el 9, incluidos.
+- **Codificación One Hot** para variables categóricas, incluida `Country`.
+- **Conversión a ordinal** de `Academic_Level`:
+  - High School → 1
+  - Undergraduate → 2
+  - Graduate → 3
+- **Variables numéricas**: no se estandarizaron ni escalaron, ya que el modelo de bosque aleatorio no es sensible a la escala.
 
-## Evaluación del modelo
+Lista de variables utilizadas:
+
+`Age`, `Gender`, `Academic_Level`, `Country`, `Avg_Daily_Usage_Hours`, `Most_Used_Platform`, `Affects_Academic_Performance`, `Sleep_Hours_Per_Night`, `Mental_Health_Score`, `Relationship_Status`, `Conflicts_Over_Social_Media`.
+
+---
+
+## 3. Variable objetivo
+
+La variable objetivo fue `Addicted_Score`, una variable numérica discreta con **valores enteros entre 3 y 9** (aunque originalmente permitía del 1 al 10).
+
+Dado que los valores representan niveles ordinales de adicción, se trató como un problema de **clasificación multiclase**.
+
+> Nota: Se podría evaluar en futuras iteraciones si un enfoque de **regresión ordinal** o **agrupación en clases** (bajo, medio, alto) mejora la interpretación y desempeño.
+
+---
+
+## 4. Evaluación del modelo
 
 ### Métricas de evaluación
 
-Descripción de las métricas utilizadas para evaluar el rendimiento del modelo.
+Se utilizaron las métricas estándar para clasificación multiclase:
 
-Dado que el nuestro era un problema de clasificación, se decidió utilizar las métricas _precission_, _recall_ y _f1 score_. Dado que son 7 categorías distintas en las que es posible clasificar una observación, y que las categorías 7 y 5 de _Addicted Score_ tenían muchísimas más observaciones que el resto, se toman los promedios ponderados de dichas métricas.
+- **Precision**  
+- **Recall**  
+- **F1-Score**  
 
-### Resultados de evaluación
+Dado el desequilibrio de clases, se reportaron los **promedios ponderados** y **macro promedio**.
 
-Tabla que muestra los resultados de evaluación del modelo baseline, incluyendo las métricas de evaluación.
+### Resultados
 
-|           | precision|   recall| f1-score|  support|
-|-----------|----------|---------|---------|---------|
-|          3|      1.00|     0.67|     0.80|        3|
-|          4|      0.90|     1.00|     0.95|       18|
-|          5|      0.92|     1.00|     0.96|       23|
-|          6|      1.00|     0.80|     0.89|       10|
-|          7|      0.97|     1.00|     0.98|       31|
-|          8|      1.00|     0.93|     0.96|       14|
-|          9|      1.00|     1.00|     1.00|        6|
-|   accuracy|          |         |     0.95|      106|
-|  macro avg|      0.85|     0.80|     0.82|      106|
-|weighted avg|     0.95|     0.95|     0.95|      106|
+| Clase | Precision | Recall | F1-score | Soporte |
+|-------|-----------|--------|----------|---------|
+| 3     | 1.00      | 0.67   | 0.80     | 3       |
+| 4     | 0.90      | 1.00   | 0.95     | 18      |
+| 5     | 0.92      | 1.00   | 0.96     | 23      |
+| 6     | 1.00      | 0.80   | 0.89     | 10      |
+| 7     | 0.97      | 1.00   | 0.98     | 31      |
+| 8     | 1.00      | 0.93   | 0.96     | 14      |
+| 9     | 1.00      | 1.00   | 1.00     | 6       |
+| **Accuracy**       |           |        | **0.95** | 106     |
+| **Macro avg**      | 0.85      | 0.80   | 0.82     | 106     |
+| **Weighted avg**   | 0.95      | 0.95   | 0.95     | 106     |
 
-## Análisis de los resultados
+---
 
-Descripción de los resultados del modelo baseline, incluyendo fortalezas y debilidades del modelo.
+## 5. Análisis de los resultados
 
-Se puede ver que en general el modelo se desempeña muy bien, logrando 95% de éxito en cada métrica. Es claro que cuando hay menos muestras en una categoría, como por ejemplo en la 3, no tiene muchas oportunidades de clasificar y un error es mucho más costoso, por lo que produce peores resultados en esa categoría. Por el contrario, cuando tiene muchísimas muestras (como en las categorías 7 y 5), se comporta mucho mejor.
+El modelo obtiene un rendimiento excelente en términos generales, con una **accuracy del 95%**. Las clases con mayor cantidad de observaciones (`5` y `7`) tienen métricas sobresalientes.
 
-## Conclusiones
+Sin embargo, las clases con muy pocas muestras (`3`, `6`, `9`) presentan mayor variabilidad en las métricas. Esto se debe a que el modelo tiene menos ejemplos para aprender y generalizar correctamente.
 
-Conclusiones generales sobre el rendimiento del modelo baseline y posibles áreas de mejora.
+> Esto sugiere una posible necesidad de **balanceo de clases**, o bien reagrupar las categorías menos frecuentes.
 
-Este modelo es bastante apropiado dado el tipo de datos tabular. Sin embargo, un área de mejora del modelo es que es posible tomar más ventaja de la alta correlación entre algunas de las variables de entrada y la variable objetivo. Será interesante explorar un modelo de regresión multilineal adaptada a un problema categórico. También se explorará una red neuronal sencilla.
+---
 
-## Referencias
+## 6. Conclusiones
 
-Lista de referencias utilizadas para construir el modelo baseline y evaluar su rendimiento.
+- El modelo baseline ofrece un excelente punto de partida.
+- Los resultados son sólidos y consistentes con el comportamiento esperado del algoritmo.
+- El enfoque de **clasificación multiclase con Random Forest** funciona bien en este problema.
+- Se recomienda explorar modelos adicionales para comparación, como:
+  - **Regresión lineal con variable ordinal**
+  - **Red neuronal sencilla**
+  - **Regresión logística multinomial**
 
-Espero que te sea útil esta plantilla. Recuerda que puedes adaptarla a las necesidades específicas de tu proyecto.
+Además, se puede incorporar la **importancia de variables** del Random Forest para análisis de interpretabilidad en la próxima fase.
+
+---
+
+## 7. Referencias
+
+- Scikit-learn documentation: [https://scikit-learn.org](https://scikit-learn.org)
+- Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5–32.
+- Kuhn, M., & Johnson, K. (2013). Applied Predictive Modeling.
+
+---
+
