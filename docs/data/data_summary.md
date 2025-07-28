@@ -1,36 +1,102 @@
 # Reporte de Datos
 
-Este documento contiene los resultados del análisis exploratorio de datos.
+Este documento contiene los resultados del análisis exploratorio de datos (EDA) para el proyecto de predicción de adicción a redes sociales. El objetivo del EDA es comprender las características y estructura del conjunto de datos, detectar posibles problemas de calidad y guiar las decisiones de preprocesamiento y modelado posteriores.
 
-## Resumen general de los datos
+---
 
-En esta sección se presenta un resumen general de los datos. Se describe el número total de observaciones, variables, el tipo de variables, la presencia de valores faltantes y la distribución de las variables.
+## 1. Resumen general de los datos
 
-El conjunto de datos consta de 705 observaciones y 13 características. Se corroboró que no hay valores faltantes, duplicados, corruptos ni en formatos distintos. Se descartó una variable y de las 12 restantes, 6 fueron numéricas y 6 categóricas. La variable objetivo, 'addicted score', es también de tipo numérico discreto, asumiendo valores enteros entre el 1 y el 10. La distribución de las variables numéricas es normal en general, excepto por la variable objetivo que presenta un sesgo a la izquierda.
+El conjunto de datos consta de **705 observaciones** y **13 características**. Tras una limpieza inicial, se descartó una variable no relevante. Las **12 variables restantes** se dividen en:
 
-## Resumen de calidad de los datos
+- **6 numéricas**
+- **6 categóricas**
+- La variable objetivo `Addicted_Score` es de tipo numérico discreto (enteros del 1 al 10).
 
-En esta sección se presenta un resumen de la calidad de los datos. Se describe la cantidad y porcentaje de valores faltantes, valores extremos, errores y duplicados. También se muestran las acciones tomadas para abordar estos problemas.
+No se identificaron valores faltantes, duplicados, corruptos ni inconsistencias de formato.
 
-Se corroboró que no hay valores duplicados, faltantes ni erróneos. También se evidencia que entre las variables categóricas no hay valores fuera de los esperados en cada categoría. Esto es, no hay errores de tipeo ni nada por el estilo. Se decidió conservar los valores extremos ya que eran plausibles, consistentes con la distribución y se consideró que aportaban información valiosa.
+La mayoría de las variables numéricas presentan distribuciones normales. Sin embargo, la variable objetivo presenta un **sesgo a la izquierda**, con una mayor concentración de valores altos.
 
-## Variable objetivo
+---
 
-En esta sección se describe la variable objetivo. Se muestra la distribución de la variable y se presentan gráficos que permiten entender mejor su comportamiento.
+## 2. Resumen de calidad de los datos
 
-La variable objetivo se podría modelar con una distribución Beta con parámetros alfa=8 y beta=4, de modo que se modela una distribución sesgada a la izquierda. El valor máximo de addicted score es 9 y el más repetido es 8, seguido del 5. El valor 2 solamente se presenta solamente un puñado de veces. 
+- **Valores faltantes:** Ninguno.
+- **Duplicados:** Ninguno.
+- **Errores de formato o de tipo:** Ninguno.
+- **Variables categóricas:** Todas las categorías están dentro de lo esperado; no se detectaron errores de tipeo ni categorías espurias.
+- **Valores extremos:** Presentes, pero plausibles. No se eliminarán, ya que aportan información relevante para el modelado.
 
-## Variables individuales
+**Acciones tomadas:**
+- Revisión completa de consistencia en variables categóricas.
+- Validación cruzada de tipos de datos.
+- Conservación de outliers para análisis posterior.
 
-En esta sección se presenta un análisis detallado de cada variable individual. Se muestran estadísticas descriptivas, gráficos de distribución y de relación con la variable objetivo (si aplica). Además, se describen posibles transformaciones que se pueden aplicar a la variable.
+---
 
-Entre las variables numéricas, todas excepto la variable objetivo tienen practicamente una distribución normal y sin valores extremos. Las variables categóricas son en general balanceadas, aunque la del nivel educativo presenta un desbalanceo muy significativo en los estudiantes de secundaria respecto de los de pregrado y posgrado. Así mismo, la variable estado civil presenta un desbalanceo significativo de la categoría "complicado" respecto de las otras dos. También la variable de la plataforma más usada favorece a instagram, tik tok, facebook y whatsapp muy por encima de las demás, como cabría esperar. En esta variable en particular, se pueden dejar solo estas 4 categorías y eliminar el resto, ya que aportan ruido solamente.
+## 3. Variable objetivo: `Addicted_Score`
 
-## Ranking de variables
+- Se distribuye en una escala discreta de 1 a 10.
+- Se observa un **sesgo a la izquierda**: los valores altos son más frecuentes.
+- El valor **máximo** observado fue 9; el valor **más frecuente** fue 8, seguido del 5.
+- El valor **mínimo** fue 1; el valor 2 aparece muy pocas veces.
 
-En esta sección se presenta un ranking de las variables más importantes para predecir la variable objetivo. Se utilizan técnicas como la correlación, el análisis de componentes principales (PCA) o la importancia de las variables en un modelo de aprendizaje automático.
+Esta distribución puede modelarse con una distribución **Beta** con parámetros `α=8` y `β=4`, que refleja la asimetría observada.
 
-En el gráfico de correlaciones de variables numéricas con la variable objetivo, es claro que las variables más explicativas son los conflictos en redes sociales y las horas de uso diarias promedio. Así mismo, está muy correlacionada negativamente con el puntaje de salud mental.
+> **Figura 1**: Histograma de `Addicted_Score`.
 
-En cuanto a las variables categóricas, la relación con la variable objetivo será objeto de investigación y modelamiento, ya que en este momento no es clara. Se hará una codificación one hot y se hará un modelo de regresión multilineal.
+---
+
+## 4. Análisis de variables individuales
+
+### Variables numéricas
+
+- Presentan distribuciones normales.
+- No se identificaron valores extremos que deban eliminarse.
+- Se considera aplicar **escalado estándar** antes del modelado.
+
+### Variables categóricas
+
+- **Academic_Level**: fuerte desbalance. La mayoría son estudiantes de pregrado.
+- **Relationship_Status**: categoría "Complicado" muy poco representada.
+- **Most_Used_Platform**: altamente dominada por Instagram, TikTok, Facebook y WhatsApp.
+
+**Acciones propuestas:**
+
+- Agrupar categorías poco frecuentes en una categoría "Otro".
+- Aplicar **codificación one-hot** para todas las variables categóricas.
+- Considerar técnicas de balanceo (como `SMOTE`) si se binariza la variable objetivo en el futuro.
+
+---
+
+## 5. Ranking de variables importantes
+
+Se evaluó la correlación lineal entre variables numéricas y la variable objetivo.
+
+- **Alta correlación positiva**: 
+  - `Conflicts_Over_Social_Media`
+  - `Avg_Daily_Usage_Hours`
+- **Alta correlación negativa**:
+  - `Mental_Health_Score`
+
+> **Figura 2**: Mapa de calor de correlaciones numéricas.
+
+En cuanto a las variables categóricas, la relación con la variable objetivo no es evidente a simple vista. Se evaluará su impacto mediante:
+
+- Codificación one-hot.
+- Modelos de regresión lineal múltiple.
+- Importancia de características en modelos de bosque aleatorio y redes neuronales.
+
+---
+
+## 6. Conclusiones y siguientes pasos
+
+- Los datos están limpios y listos para transformación y modelado.
+- Se identificaron variables clave con potencial predictivo.
+- Se deben transformar adecuadamente las variables categóricas.
+- Se recomienda realizar una normalización de las variables numéricas para modelos sensibles a escala.
+
+La calidad de los datos es alta, lo que proporciona una buena base para el modelado predictivo.
+
+---
+
 
