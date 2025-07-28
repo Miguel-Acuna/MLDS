@@ -4,7 +4,7 @@
 
 Este documento presenta el desarrollo y evaluación de un modelo de aprendizaje automático orientado a predecir el **nivel de adicción a redes sociales** en estudiantes, utilizando datos autoreportados. Se compararon múltiples modelos, incluyendo un modelo *baseline* (bosque aleatorio) y una red neuronal multicapa, usando técnicas de ajuste de hiperparámetros como búsqueda en rejilla y Optuna.  
 
-El modelo final seleccionado fue un **bosque aleatorio con 69 árboles**, profundidad máxima de 11, optimizado con el criterio de impureza Gini. Este modelo obtuvo resultados sobresalientes, con métricas de _precision_, _recall_ y _f1-score_ superiores al 95% en el conjunto de evaluación. Aunque el modelo neuronal mostró un rendimiento competitivo (~92%), no logró superar al modelo basado en árboles.
+El modelo final seleccionado fue un **bosque aleatorio con 69 árboles**, profundidad máxima de 11, optimizado con el criterio  Gini. Este modelo obtuvo resultados sobresalientes, con métricas de _precision_, _recall_ y _f1-score_ superiores al 95% en el conjunto de evaluación. Aunque el modelo neuronal mostró un rendimiento competitivo (~92%), no logró superar al modelo basado en árboles.
 
 ## 2. Descripción del Problema
 
@@ -37,7 +37,7 @@ La variable objetivo es **`Addicted_Score`**, una variable ordinal con valores d
 
 ### 4.1 Modelo Baseline
 
-Se construyó un modelo base con un **Random Forest** utilizando búsqueda en rejilla. Los hiperparámetros óptimos fueron:
+Se construyó un modelo base con un **Random Forest** utilizando búsqueda en rejilla GridCV. Los hiperparámetros óptimos fueron:
 
 - `n_estimators = 69`
 - `max_depth = 11`
@@ -100,7 +100,6 @@ El entorno fue gestionado en Colab, utilizando `mlflow.set_experiment()` y `mlfl
 - En futuras versiones se puede considerar:
   - Mayor equilibrio de clases (recolección dirigida)
   - Regresores ordinales o modelos de clasificación jerárquica
-  - Análisis SHAP o Permutation Importance para interpretar resultados
 
 ## 8. Aplicaciones Potenciales
 

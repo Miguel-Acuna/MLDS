@@ -17,7 +17,7 @@ def main():
       except Exception as e:
         print(e)
 
-    model = mlflow.pyfunc.load_model("models:/Prediction_addicted/latest")
+    model = mlflow.pyfunc.load_model("models:/Prediction_addicted/1")
     prediction = model.predict(data)
     print(f"El puntaje predicho de adicción es: {prediction}")
 
