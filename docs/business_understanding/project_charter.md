@@ -2,7 +2,7 @@
 
 ## Nombre del Proyecto
 
-Análisis de la adicción a los teléfonos inteligentes en estudiantes.
+Análisis de la adicción a las redes sociales en estudiantes.
 
 ## Objetivo del Proyecto
 
