@@ -1,5 +1,7 @@
 # Despliegue de modelos (Con FastApi)
 
+**Link:** https://mlds-83d8.up.railway.app/
+
 ## Infraestructura
 
 - **Nombre del modelo:** Modelo para predecir nivel de addicion a redes sociales
@@ -18,7 +20,7 @@
 |scikit-learn                       |   1.6.1  |
 
 - **Diagrama de arquitectura:** 
-
+```text
 +---------------------+
 |    Usuario final    |
 | (navegador o cURL)  |
@@ -43,11 +45,12 @@
 |     Modelo ML       |
 | (Scikit-learn .pkl) |
 +---------------------+
+```
 
 ## Código de despliegue
 
-- **Archivo principal:** deploy.py
-- **Rutas de acceso a los archivos:** MLDS/src/app/__init__.py
+- **Archivo principal:** main.py
+- **Rutas de acceso a los archivos:** MLDS/src/app/main.py
 
 ## Documentación del despliegue
 
