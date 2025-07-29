@@ -7,7 +7,7 @@ import joblib
 app = FastAPI()
 templates = Jinja2Templates(directory="app/templates")
 
-model = joblib.load("app/model.pkl") 
+model = joblib.load("app/models/model.pkl") 
 
 @app.get("/", response_class=HTMLResponse)
 async def form_get(request: Request):
