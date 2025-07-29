@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Predict Addiction Score</title>
     <style>
@@ -13,13 +13,13 @@
     <h2>Social Media Addiction Prediction</h2>
     <form method="post">
         <label>Age:</label>
-        <input type="number" name="Age" required>
+        <input type="number" min="4" max="100" name="Age" required>
 
         <label>Average Daily Usage (hours):</label>
-        <input type="number" step="0.1" name="Avg_Daily_Usage_Hours" required>
+        <input type="number" step="0.1" min="0" max="20" name="Avg_Daily_Usage_Hours" required>
 
         <label>Sleep Hours Per Night:</label>
-        <input type="number" step="0.1" name="Sleep_Hours_Per_Night" required>
+        <input type="number" step="0.1" min="1" max="10" name="Sleep_Hours_Per_Night" required>
 
         <label>Mental Health Score (1 to 10):</label>
         <input type="number" step="0.1" min="1" max="10" name="Mental_Health_Score" required>
@@ -37,8 +37,120 @@
             <option value="Female">Female</option>
         </select>
 
-        <label>Country:</label>
-        <input type="text" name="Country" required>
+        <label for="country">Country:</label>
+        <input list="countries" name="Country" id="country" required placeholder="Type your country...">
+        <datalist id="countries">
+            <option value="Afghanistan">
+            <option value="Albania">
+            <option value="Andorra">
+            <option value="Argentina">
+            <option value="Armenia">
+            <option value="Australia">
+            <option value="Austria">
+            <option value="Azerbaijan">
+            <option value="Bahamas">
+            <option value="Bahrain">
+            <option value="Bangladesh">
+            <option value="Belarus">
+            <option value="Belgium">
+            <option value="Bhutan">
+            <option value="Bolivia">
+            <option value="Bosnia">
+            <option value="Brazil">
+            <option value="Bulgaria">
+            <option value="Canada">
+            <option value="Chile">
+            <option value="China">
+            <option value="Colombia">
+            <option value="Costa Rica">
+            <option value="Croatia">
+            <option value="Cyprus">
+            <option value="Czech Republic">
+            <option value="Denmark">
+            <option value="Ecuador">
+            <option value="Egypt">
+            <option value="Estonia">
+            <option value="Finland">
+            <option value="France">
+            <option value="Georgia">
+            <option value="Germany">
+            <option value="Ghana">
+            <option value="Greece">
+            <option value="Hong Kong">
+            <option value="Hungary">
+            <option value="Iceland">
+            <option value="India">
+            <option value="Indonesia">
+            <option value="Iraq">
+            <option value="Ireland">
+            <option value="Israel">
+            <option value="Italy">
+            <option value="Jamaica">
+            <option value="Japan">
+            <option value="Jordan">
+            <option value="Kazakhstan">
+            <option value="Kenya">
+            <option value="Kosovo">
+            <option value="Kuwait">
+            <option value="Kyrgyzstan">
+            <option value="Latvia">
+            <option value="Lebanon">
+            <option value="Liechtenstein">
+            <option value="Lithuania">
+            <option value="Luxembourg">
+            <option value="Malaysia">
+            <option value="Maldives">
+            <option value="Malta">
+            <option value="Mexico">
+            <option value="Moldova">
+            <option value="Monaco">
+            <option value="Montenegro">
+            <option value="Morocco">
+            <option value="Nepal">
+            <option value="Netherlands">
+            <option value="New Zealand">
+            <option value="Nigeria">
+            <option value="North Macedonia">
+            <option value="Norway">
+            <option value="Oman">
+            <option value="Pakistan">
+            <option value="Panama">
+            <option value="Paraguay">
+            <option value="Peru">
+            <option value="Philippines">
+            <option value="Poland">
+            <option value="Portugal">
+            <option value="Qatar">
+            <option value="Romania">
+            <option value="Russia">
+            <option value="San Marino">
+            <option value="Serbia">
+            <option value="Singapore">
+            <option value="Slovakia">
+            <option value="Slovenia">
+            <option value="South Africa">
+            <option value="South Korea">
+            <option value="Spain">
+            <option value="Sri Lanka">
+            <option value="Sweden">
+            <option value="Switzerland">
+            <option value="Syria">
+            <option value="Taiwan">
+            <option value="Tajikistan">
+            <option value="Thailand">
+            <option value="Trinidad">
+            <option value="Turkey">
+            <option value="UAE">
+            <option value="UK">
+            <option value="USA">
+            <option value="Ukraine">
+            <option value="Uruguay">
+            <option value="Uzbekistan">
+            <option value="Vatican City">
+            <option value="Venezuela">
+            <option value="Vietnam">
+            <option value="Yemen">
+        </datalist>
 
         <label>Most Used Platform:</label>
         <select name="Most_Used_Platform" required>
@@ -73,6 +185,7 @@
 
     {% if result %}
         <h3 style="text-align: center;">{{ result }}</h3>
+        <p><em>{{ range_info }}</em></p>
     {% endif %}
 </body>
 </html>
